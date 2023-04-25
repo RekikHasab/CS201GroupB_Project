@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0747fe4-9bf9-4820-b5e0-58d38d42fbb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS201GroupB_Project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/Bookstore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/Ids.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/Market.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scope/more/StoreDirectory.java" afterDir="false" />
+    <list default="true" id="e0747fe4-9bf9-4820-b5e0-58d38d42fbb0" name="Changes" comment="CS 201 GroupB Project&#10;This project is a miniature version of an online store. A user will have the option to get information about a food market and a bookstore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +67,30 @@
       <option name="presentableId" value="Default" />
       <updated>1682362036414</updated>
       <workItem from="1682362037687" duration="479000" />
-      <workItem from="1682362705293" duration="14404000" />
+      <workItem from="1682362705293" duration="17051000" />
     </task>
+    <task id="LOCAL-00001" summary="CS 201 GroupB Project&#10;This project is a miniature version of an online store. A user will have the option to get information about a food market and a bookstore">
+      <created>1682390977638</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682390977638</updated>
+    </task>
+    <task id="LOCAL-00002" summary="CS 201 GroupB Project&#10;This project is a miniature version of an online store. A user will have the option to get information about a food market and a bookstore">
+      <created>1682392787737</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682392787737</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="CS 201 GroupB Project&#10;This project is a miniature version of an online store. A user will have the option to get information about a food market and a bookstore" />
+    <option name="LAST_COMMIT_MESSAGE" value="CS 201 GroupB Project&#10;This project is a miniature version of an online store. A user will have the option to get information about a food market and a bookstore" />
   </component>
 </project>
