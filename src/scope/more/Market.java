@@ -12,7 +12,8 @@ public class Market {
     private final String BOTTLED_WATER = "bottled_water";
 
     private final String[] STORE_ITEMS =
-            {BANANAS,
+            {
+                    BANANAS,
                     GRAPES,
                     CHERRIES,
                     MILK,

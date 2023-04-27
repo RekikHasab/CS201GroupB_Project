@@ -1,5 +1,4 @@
 package scope.more;
-
 public class Ids {
     static boolean isGoodId(String s){
         if(s == null) return false;

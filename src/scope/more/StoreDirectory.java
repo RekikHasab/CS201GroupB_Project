@@ -1,5 +1,4 @@
 package scope.more;
-
 public class StoreDirectory {
     private Bookstore bookstore;
     private Market market;
@@ -7,32 +6,32 @@ public class StoreDirectory {
         bookstore = new Bookstore(custId);
         market = new Market();
     }
+    //implement - to check Id
+    public static boolean isGoodId(String id) {
+        return Ids.isGoodId(id);
+    }
 
     public int getNumberOfBooks() {
-
         return bookstore.getNumBooks();
     }
     public int getNumberOfBookstoreEmployees() {
         //implement
-        return this.bookstore.getNumEmployees();
+        return bookstore.getNumEmployees();
     }
     public boolean addNewEmployee(String employeeId){
         //implement
-        return this.bookstore.addNewEmployee(employeeId);
+        return bookstore.addNewEmployee(employeeId);
     }
     public boolean bookIsInStock(String bookId){
         //implement
-        return this.bookstore.bookIsInStock(bookId);
-        //return true;
+        return bookstore.bookIsInStock(bookId);
     }
-    public boolean addNewBook(String bookId){
+    public boolean addNewBook(String bookId) throws RuntimeException {
         //implement
-        return this.bookstore.addNewBook2(bookId);
-        //return true;
+        return bookstore.addNewBook2(bookId);
     }
     public boolean marketCarriesFoodItem(String foodItem){
         //implement
-        return this.market.carriesFoodItem(foodItem);
-        //return true;
+        return market.carriesFoodItem(foodItem);
     }
 }

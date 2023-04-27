@@ -32,14 +32,21 @@ class Bookstore {
         return count;
     }
 
-    public boolean addNewBook2(String bookId) {
-        for (int i = 0; i < books.length; i++) {
-            if (books[i] == null) {
-                books[i] = new Book(bookId);
-                return true;
+    public boolean addNewBook2(String bookId) throws RuntimeException{
+        if (bookId.length() != 3) {
+            System.out.println("Invalid Book Id.");
+            return false;
+        } else {
+            for (int i = 0; i < books.length; i++) {
+                if (books[i] == null) {
+                    books[i] = new Book(bookId);
+                    System.out.println("Book added successfully ");//Successful
+                    return true;
+                }
             }
         }
-        throw new RuntimeException("The array is full");
+
+        throw new RuntimeException();
     }
 
     public void addNewBook(String bookId) {
@@ -66,17 +73,22 @@ class Bookstore {
     }
 
     public boolean addNewEmployee(String employeeId) {
-        Employee e = new Employee(employeeId);
-        int i = 0;
-        for (i = 0; i < employees.length; i++) {
-            if (employees[i] == null)
-                break;
-        }
-        if (i >= 0 && i < employees.length) {
-            employees[i] = e;
-            return true;
-        } else
+        if (employeeId.length() != 3) {
+            System.out.println("Invalid Employee Id.");
             return false;
+        } else {
+            Employee e = new Employee(employeeId);
+            int i = 0;
+            for (i = 0; i < employees.length; i++) {
+                if (employees[i] == null)
+                    break;
+            }
+            if (i >= 0 && i < employees.length) {
+                employees[i] = e;
+                return true;
+            } else
+                return false;
+        }
     }
 
     public boolean bookIsInStock(String bookId) {
@@ -91,6 +103,7 @@ class Bookstore {
     public static void main(String[] args) {
         Bookstore bs = new Bookstore("123");
         bs.printTheBooks();
+        bs.addNewBook("101");
         bs.addNewBook("101");
         bs.addNewBook("102");
         bs.addNewBook("103");

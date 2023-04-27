@@ -1,148 +1,157 @@
-import java.util.Scanner;
 import scope.more.StoreDirectory;
+
+import java.util.Scanner;
+
 public class Driver {
-    private Scanner sc = new Scanner(System.in);
+    final String CONTINUE = "Review more options? (Y/N)";
+    final String line = System.getProperty("line.separator");
+    private final Scanner sc = new Scanner(System.in);
     private String userID;
     private StoreDirectory directory;
 
-    final String CONTINUE = "Review more options? (Y/N)";
-    final String line = System.getProperty("line.separator");
-
-    public static void main(String[] args){
-        new Driver();
-    }
-    public Driver(){
+    public Driver() {
         System.out.println("What is your Id? (An Id is a 3-digit code, like 009.)");
         String userId = sc.nextLine();
+
+        //Check Ids
+        if (!StoreDirectory.isGoodId(userId)) {//False then terminate
+            System.out.println("User Id not found!");
+            return;
+        }
+
         this.userID = userId;
         directory = new StoreDirectory(this.userID);
         String inputString = "Y";
         String outputString = null;
         displayOptions();
-        while(!inputString.equalsIgnoreCase("N")){
+        while (!inputString.equalsIgnoreCase("N")) {
             inputString = sc.nextLine();
 
-            if(inputString.equalsIgnoreCase("A")){
+            if (inputString.equalsIgnoreCase("A")) {
                 displayNumberOfBooks();
-            }
-            else if(inputString.equalsIgnoreCase("B")){
+            } else if (inputString.equalsIgnoreCase("B")) {
                 displayNumberOfEmployees();
-            }
-            else if(inputString.equalsIgnoreCase("C")){
-                outputString = "In Input Area, type in the employee number using this format:"+line+
-                        "   add employee xxx"+line+
-                        "where 'xxx' is the 3-digit code for the employee number.";
-                //...
-                System.out.println(outputString);
-
-            }
-            else if(inputString.equalsIgnoreCase("D")){
-
-                outputString = "In Input Area, type in the book id number using this format:"+line+
-                        "   book xxx"+line+
+            } else if (inputString.equalsIgnoreCase("C")) {
+                outputString = "In Input Area, type in the employee number using this format:" + line +
+                        "   add employee xxx" + line +
                         "where 'xxx' is the 3-digit code for the employee number.";
                 System.out.println(outputString);
 
-            }
-            else if(inputString.equalsIgnoreCase("E")){
+            } else if (inputString.equalsIgnoreCase("D")) {
 
-                outputString = "In Input Area, type in the book number using this format:"+line+
-                        "   add book xxx"+line+
+                outputString = "In Input Area, type in the book id number using this format:" + line +
+                        "   book xxx" + line +
+                        "where 'xxx' is the 3-digit code for the employee number.";
+                System.out.println(outputString);
+
+            } else if (inputString.equalsIgnoreCase("E")) {
+
+                outputString = "In Input Area, type in the book number using this format:" + line +
+                        "   add book xxx" + line +
                         "where 'xxx' is the 3-digit code for the book number.";
                 System.out.println(outputString);
-            }
-
-            else if(inputString.equalsIgnoreCase("H")){
-                outputString = "In Input Area, type in the name of the food item using this format:"+line+
-                        "   food nn..."+line+
+            } else if (inputString.equalsIgnoreCase("H")) {
+                outputString = "In Input Area, type in the name of the food item using this format:" + line +
+                        "   food nn..." + line +
                         "where 'nn...' represents the name of the food item (like bananas or cherries).";
                 System.out.println(outputString);
-            }
-            else if(inputString.trim().startsWith("add employee")){  //add employee
+            } else if (inputString.trim().startsWith("add employee")) {  //add employee
 
                 int len = "add employee".length();
                 addEmployee(inputString.substring(len).trim());
-            }
-            else if(inputString.trim().startsWith("add book")){  //add book
+            } else if (inputString.trim().startsWith("add book")) {  //add book
                 int len = "add book".length();
                 addBook(inputString.substring(len).trim());
-            }
-            else if(inputString.trim().startsWith("book")){
+            } else if (inputString.trim().startsWith("book")) {
                 int len = "book".length();
                 checkIfBookIsInStock(inputString.substring(len).trim());
-            }
-            else if(inputString.trim().startsWith("food")){
+            } else if (inputString.trim().startsWith("food")) {
                 int len = "food".length();
                 checkWhetherFoodItemInMarket(inputString.substring(len).trim());
-            }
-            else if(inputString.trim().equalsIgnoreCase("Y")){
+            } else if (inputString.trim().equalsIgnoreCase("Y")) {
                 displayOptions();
-            }
-            else if(inputString.trim().equalsIgnoreCase("N")){
+            } else if (inputString.trim().equalsIgnoreCase("N")) {
                 System.out.println("Have a nice day! Bye!");
                 System.exit(0);
-            }
-            else {
-                System.out.println(line+"I did not understand your response."+line);
+            } else {
+                System.out.println(line + "I did not understand your response." + line);
                 displayOptions();
             }
         }
 
+    }
+
+    public static void main(String[] args) {
+        new Driver();
     }
 
     //this implementation has been done for you
     void displayNumberOfBooks() {
         int numbooks = directory.getNumberOfBooks();
-        if(numbooks > -1){
-            System.out.println("Number of books is: "+ numbooks +" (Look for other console messages.)"+line+CONTINUE);
+        if (numbooks > -1) {
+            System.out.println("Number of books is: " + numbooks + " (Look for other console messages.)" + line + CONTINUE);
         }
 
     }
-    void displayNumberOfEmployees() {
+
+    //RuntimeException
+    void addBook(String bookId) {
         //implement -- redo the implementation
-        int numOfEmployees = directory.getNumberOfBookstoreEmployees();
-        System.out.println("Number of employees is: " + numOfEmployees + " (Look for other console messages.)"+line+CONTINUE);
+        try {
+            directory.addNewBook(bookId);
+        } catch (RuntimeException e) {
+            System.out.println("Array list full of Books.");//Error Msg
+            System.out.printf(line + CONTINUE);
+            return;
+        }
+        System.out.println(line + CONTINUE);//Successful
     }
 
-    void addEmployee(String employeeId){
-        //implement-- redo the implementation
-        //call the corresponding method on StoreDirectory Class
-        directory.addNewEmployee(employeeId);
-        System.out.println("Employee added unless a console message says otherwise " + line+CONTINUE);
-    }
-    void addBook(String bookId){
+    void checkIfBookIsInStock(String bookId) {
         //implement -- redo the implementation
-        directory.addNewBook(bookId);
-        System.out.println("Book added unless a console message says otherwise " + line+CONTINUE);
-    }
-    void checkIfBookIsInStock(String bookId){
-        //implement -- redo the implementation
-        boolean isInstock = directory.bookIsInStock(bookId);
-        if(isInstock){
-            System.out.println("Yes, book with bookId "+bookId+" is in stock." +" (Look for console messages.)"+line+CONTINUE);
-        }else {
+        boolean isInStock = directory.bookIsInStock(bookId);
+        if (isInStock) {
+            System.out.println("Yes, book with bookId " + bookId + " is in stock." + " (Look for console messages.)" + line + CONTINUE);
+        } else {
             System.out.println("Book " + bookId + " is not in stock");
         }
     }
 
-    void checkWhetherFoodItemInMarket(String foodItem){
-        //	implement-- redo the implementation
-        boolean isInMarket = directory.marketCarriesFoodItem(foodItem);
-        if(isInMarket){
-            System.out.println("Yes the market carries "+foodItem+line+CONTINUE);
-        }else {
-            System.out.println("Food item " + foodItem + " is not in the market");
+    void displayNumberOfEmployees() {
+        //implement -- redo the implementation
+        int numOfEmployees = directory.getNumberOfBookstoreEmployees();
+        System.out.println("Number of employees is: " + numOfEmployees + " (Look for other console messages.)" + line + CONTINUE);
+    }
+
+    void addEmployee(String employeeId) {
+        //implement-- redo the implementation
+        //call the corresponding method on StoreDirectory Class
+        if (directory.addNewEmployee(employeeId)) {
+            System.out.println("Employee added successfully " + line + CONTINUE);
+        } else {
+            System.out.println(line + CONTINUE);
         }
     }
 
-    void displayOptions(){
-        String display = "TYPE A LETTER IN INPUT AREA TO MAKE A SELECTION"+line+line+
-                "A. Learn how many books are in bookstore."+line+
-                "B. Learn how many employees are in bookstore."+line+
-                "C. Add an employee to the bookstore."+line+
-                "D. See if a book is in stock in the bookstore."+line+
-                "E. Add a book to the bookstore."+line+
-                "H. See if the market carries a particular food item."+line+
+    void checkWhetherFoodItemInMarket(String foodItem) {
+        //	implement-- redo the implementation
+        boolean isInMarket = directory.marketCarriesFoodItem(foodItem);
+        if (isInMarket) {
+            System.out.println("Yes the market carries " + foodItem + line + CONTINUE);
+        } else {
+            System.out.println("Food item " + foodItem + " is not in the market");
+            System.out.printf(line + CONTINUE);
+        }
+    }
+
+    void displayOptions() {
+        String display = "TYPE A LETTER IN INPUT AREA TO MAKE A SELECTION" + line + line +
+                "A. Learn how many books are in bookstore." + line +
+                "B. Learn how many employees are in bookstore." + line +
+                "C. Add an employee to the bookstore." + line +
+                "D. See if a book is in stock in the bookstore." + line +
+                "E. Add a book to the bookstore." + line +
+                "H. See if the market carries a particular food item." + line +
                 "N. Exit the system.";
         System.out.println(display);
     }
